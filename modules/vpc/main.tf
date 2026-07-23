@@ -2,6 +2,7 @@ resource "aws_vpc" "vpc" {
   cidr_block = var.vpc_cidr
   instance_tenancy = "default"
   enable_dns_hostnames = true
+  
 
   tags = {
     Name = "${var.project_name}-${var.environment}-vpc"
@@ -144,6 +145,10 @@ resource "aws_nat_gateway" "seshat" {
  depends_on = [aws_internet_gateway.internet_gateway]
  allocation_id = aws_eip.eks-workers.id
  subnet_id = aws_subnet.public_subnet_az1.id
+
+ tags = {
+   Name = "${var.project_name}-${var.environment}-nat-gateway"
+ }
 }
 
 resource "aws_route" "route" {
