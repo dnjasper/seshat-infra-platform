@@ -35,3 +35,4 @@ variable "private_subnet_az2_cidr" {
     description = "The CIDR block for the private subnet in availability zone 2"
     type        = string
 }
+

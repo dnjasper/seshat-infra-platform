@@ -25,25 +25,27 @@ module "eks" {
     }
 
     enable_cluster_creator_admin_permissions = true
-    authentication_mode = "api_and_config_map"
+    authentication_mode = "API_AND_CONFIG_MAP"
     
     endpoint_public_access = true
 
-    addons = {
-        vpc_cni = {
-            before_compute = true
-        }
+#     addons = {
+#         vpc_cni = {
+#         # most_recent = true
+#           before_compute = true
+#           addon_version  = "v1.19.0-eksbuild.1"
+#         }
     
 
-    eks-pod-identity-agent = {
-        before_compute = true
-    }
+#         eks-pod-identity-agent = {
+#           before_compute = true
+#        }
 
-    coredns = {}
+#       coredns = {}
 
-    kube-proxy = {}
-
-eks_managed_node_groups = {
+#       kube-proxy = {}
+#   }
+   eks_managed_node_groups = {
     seshat = {
         ami_type = "AL2023_x86_64_STANDARD"
         instance_type = ["t3.medium"]
@@ -72,4 +74,3 @@ eks_managed_node_groups = {
      }
    }
   }
-}

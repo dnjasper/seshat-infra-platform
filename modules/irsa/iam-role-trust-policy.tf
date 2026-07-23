@@ -1,8 +1,8 @@
 data "aws_caller_identity" "current" {}
 
-data "aws_eks_cluster" "seshat" {
-    name = "${var.cluster_name}-cluster"
-}
+# data "aws_eks_cluster" "seshat" {
+#     name = "${var.cluster_name}-cluster"
+# }
 
 locals {
     seshat_oidc_issuer = replace(var.oidc_provider_url, "https://","")
@@ -46,7 +46,7 @@ data "aws_iam_policy_document" "seshat_trust_policy" {
 
 
    resource "aws_iam_role" "seshat_role" {
-    name = "seshat_role"
+    name = "seshat_role_${var.namespace}"
 
    assume_role_policy = data.aws_iam_policy_document.seshat_trust_policy.json
    }
@@ -77,8 +77,9 @@ data "aws_iam_policy_document" "seshat_trust_policy" {
   }
 }
 resource "aws_iam_role" "github_actions_role" {
-  name = "github_actions_role"
+  name = "github_actions_role_${var.namespace}"
 
 assume_role_policy = data.aws_iam_policy_document.github_actions_trust_policy.json
 
 }
+

@@ -23,7 +23,17 @@ variable "oidc_provider_arn" {
     type = string
 }   
 
-variable "oidc_thumbprint" {
-    description = "The thumbprint of the OIDC provider"
+# variable "oidc_thumbprint" {
+#     description = "The thumbprint of the OIDC provider"
+#     type = string
+# }
+
+variable "environment" {
+    description = "The environment for the IRSA module"
     type = string
 }
+
+# variable "role_suffix" {
+#   type        = string
+#   description = "A unique suffix to prevent IAM name collisions across multiple module calls"
+# }

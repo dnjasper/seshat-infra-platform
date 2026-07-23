@@ -11,8 +11,8 @@ terraform {
     backend "s3" {
         bucket = "seshat-infra-tfstate"
         key = "dev/infrastructure.tfstate"
-        region = var.region
-        dynamodb_endpoint = "my-ran-infrastructure-locks"
+        region = "us-east-1"
+        dynamodb_table = "my-ran-infrastructure-locks"
         encrypt = true
     }
 }
@@ -35,11 +35,11 @@ provider "kubernetes" {
     cluster_ca_certificate = base64decode(
         module.eks.cluster_certificate_authority_data
     )
-    token = data.aws_eks_cluster_data.this.token
+    token = data.aws_eks_cluster_auth.this.token
 }
 
-data "aws_eks_cluster_data" "this" {
-    name = module.eks.cluster_name
+data "aws_eks_cluster_auth" "this" {
+    name = var.cluster_name
 }
 
 ###############################   VPC  ###############################
@@ -76,7 +76,7 @@ module "vpc" {
 # EKS Variables
 
 variable "ec2_instance_type" { type = string }
-variable "subnet_ids" { type = string }
+#variable "subnet_ids" { type = string }
 
 module "eks" {
     source = "../../modules/eks"
@@ -95,27 +95,30 @@ module "eks" {
 ###############################   IRSA  ###############################
 ## IRSA Varriables
 
-variable "oidc_provider_arn" { type = string }
 variable "service_account_name" { type = string }
+
+
 
 
 # IRSA
 
 module "irsa" {
-    source = "../../module/irsa"
+    source = "../../modules/irsa"
     environment = var.environment
     cluster_name = var.cluster_name
     oidc_provider_arn = module.eks.oidc_provider_arn
-    namespace           = kube-system
+    oidc_provider_url = module.eks.cluster_oidc_issuer_url
+    namespace           = "kube-system"
     service_account_name = var.service_account_name
 }
 
 module "flux_irsa" {
-    source = "../../module/irsa"
+    source = "../../modules/irsa"
     environment = var.environment
     cluster_name = var.cluster_name
     oidc_provider_arn = module.eks.oidc_provider_arn
-    namespace           = flux-system
+    oidc_provider_url = module.eks.cluster_oidc_issuer_url
+    namespace           = "flux-system"
     service_account_name = var.service_account_name
 }
 
@@ -129,8 +132,9 @@ variable "known_hosts" { type = string }
 
 # Secret
 module "k8s-secret" {
-    source = "../../module/k8s-secret"
-
+    source = "../../modules/k8s-secret"
+   
+    github_token = var.github_token
     identity_public_key = var.identity_public_key
     identity_private_key = var.identity_private_key
     known_hosts = var.known_hosts
@@ -140,3 +144,11 @@ module "k8s-secret" {
 ###############################  ECR  ###############################
 # ECR Variables
 
+variable "github_token" { type = string }
+
+module "ecr" {
+  source = "../../modules/ecr"
+
+  github_token = var.github_token
+  environment = var.environment
+ }
