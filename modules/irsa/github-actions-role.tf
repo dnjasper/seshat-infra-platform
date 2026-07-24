@@ -19,7 +19,7 @@ data "aws_iam_policy_document" "github_actions_trust_policy" {
          condition { 
           test = "StringEquals"
           variable = "token.actions.githubusercontent.com:sub"
-          values   = ["repo:dnjasper/seshat-app-delivery:*"]
+          values   = ["repo:dnjasper/seshat-infra-platform:*"]
      }
   }
 }
