@@ -29,7 +29,7 @@ data "aws_iam_policy_document" "github_actions_trust_policy" {
 
 resource "aws_iam_role" "github_actions_role" {
   name = "github_actions_role_${var.namespace}"
-
+  count = var.namespace == "flux-system" ? 1 : 0
 assume_role_policy = data.aws_iam_policy_document.github_actions_trust_policy.json
 
 }

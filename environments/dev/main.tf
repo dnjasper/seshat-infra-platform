@@ -102,25 +102,39 @@ variable "service_account_name" { type = string }
 
 # IRSA
 
+
+# OPTIMIZED PARENT LOOP: Replaces both old module blocks completely
 module "irsa" {
-    source = "../../modules/irsa"
-    environment = var.environment
-    cluster_name = var.cluster_name
-    oidc_provider_arn = module.eks.oidc_provider_arn
-    oidc_provider_url = module.eks.cluster_oidc_issuer_url
-    namespace           = "kube-system"
-    service_account_name = var.service_account_name
+  source   = "../../modules/irsa"
+  for_each = toset(["kube-system", "flux-system"]) 
+
+  environment          = var.environment
+  cluster_name         = var.cluster_name
+  oidc_provider_arn    = module.eks.oidc_provider_arn
+  oidc_provider_url    = module.eks.cluster_oidc_issuer_url
+  namespace            = each.key # Dynamically assigns "kube-system" then "flux-system"
+  service_account_name = var.service_account_name
 }
 
-module "flux_irsa" {
-    source = "../../modules/irsa"
-    environment = var.environment
-    cluster_name = var.cluster_name
-    oidc_provider_arn = module.eks.oidc_provider_arn
-    oidc_provider_url = module.eks.cluster_oidc_issuer_url
-    namespace           = "flux-system"
-    service_account_name = var.service_account_name
-}
+# module "irsa" {
+#     source = "../../modules/irsa"
+#     environment = var.environment
+#     cluster_name = var.cluster_name
+#     oidc_provider_arn = module.eks.oidc_provider_arn
+#     oidc_provider_url = module.eks.cluster_oidc_issuer_url
+#     namespace           = "kube-system"
+#     service_account_name = var.service_account_name
+# }
+
+# module "flux_irsa" {
+#     source = "../../modules/irsa"
+#     environment = var.environment
+#     cluster_name = var.cluster_name
+#     oidc_provider_arn = module.eks.oidc_provider_arn
+#     oidc_provider_url = module.eks.cluster_oidc_issuer_url
+#     namespace           = "flux-system"
+#     service_account_name = var.service_account_name
+# }
 
 ###############################  K8s SECRET  ###############################
 # Secret Variables

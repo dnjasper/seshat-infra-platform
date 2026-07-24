@@ -4,6 +4,7 @@ resource "aws_iam_role_policy_attachment" "seshat_attach" {
 }
 
 resource "aws_iam_role_policy_attachment" "github_ecr_access" {
-    role = aws_iam_role.github_actions_role.name
+    count = var.namespace == "flux-system" ? 1 : 0
+    role = aws_iam_role.github_actions_role[0].name
     policy_arn = "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryPowerUser"
 }
