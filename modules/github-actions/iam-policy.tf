@@ -1,7 +1,7 @@
 resource "aws_iam_role_policy" "github_actions_tfstate" {
   name = "github-actions-tfstate-access"
 
-  role = aws_iam_role.github_actions_role[0].id
+  role = aws_iam_role.github_actions_role.id
 
   policy = jsonencode({
     Version = "2012-10-17"

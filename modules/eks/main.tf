@@ -48,7 +48,7 @@ module "eks" {
    eks_managed_node_groups = {
     seshat = {
         ami_type = "AL2023_x86_64_STANDARD"
-        instance_type = ["t3.medium"]
+        instance_types = ["t3.medium"]
 
         capacity_type = "ON_DEMAND"
         min_size = 1

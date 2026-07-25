@@ -1,45 +1,45 @@
 terraform {
-    required_version = "~> 1.6.2"
-    required_providers {
-       aws = {
-         source = "hashicorp/aws"
-         version = "~> 6.0"
-         }
+  required_version = "~> 1.6.2"
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 6.0"
     }
+  }
 
 
-    backend "s3" {
-        bucket = "seshat-infra-tfstate"
-        key = "dev/infrastructure.tfstate"
-        region = "us-east-1"
-        dynamodb_table = "my-ran-infrastructure-locks"
-        encrypt = true
-    }
+  backend "s3" {
+    bucket         = "seshat-infra-tfstate"
+    key            = "dev/infrastructure.tfstate"
+    region         = "us-east-1"
+    dynamodb_table = "my-ran-infrastructure-locks"
+    encrypt        = true
+  }
 }
 
 provider "aws" {
-    region = var.region
+  region = var.region
 
-    default_tags {
-      tags = {
-        "Automation" = "terraform"
-        "Project" = var.project_name
-        "Environment" = var.environment
-     }
+  default_tags {
+    tags = {
+      "Automation"  = "terraform"
+      "Project"     = var.project_name
+      "Environment" = var.environment
     }
+  }
 
 }
 provider "kubernetes" {
-    host   = module.eks.cluster_endpoint
+  host = module.eks.cluster_endpoint
 
-    cluster_ca_certificate = base64decode(
-        module.eks.cluster_certificate_authority_data
-    )
-    token = data.aws_eks_cluster_auth.this.token
+  cluster_ca_certificate = base64decode(
+    module.eks.cluster_certificate_authority_data
+  )
+  token = data.aws_eks_cluster_auth.this.token
 }
 
 data "aws_eks_cluster_auth" "this" {
-    name = var.cluster_name
+  name = var.cluster_name
 }
 
 ###############################   VPC  ###############################
@@ -60,15 +60,15 @@ variable "vpc_cidr" { type = string }
 # VPC
 
 module "vpc" {
-    source = "../../modules/vpc"
+  source = "../../modules/vpc"
 
-    environment                   = var.environment
-    project_name                  = var.project_name
-    vpc_cidr                      = var.vpc_cidr
-    public_subnet_az1_cidr        = var.public_subnet_az1_cidr
-    public_subnet_az2_cidr        = var.public_subnet_az2_cidr
-    private_subnet_az1_cidr       = var.private_subnet_az1_cidr
-    private_subnet_az2_cidr       = var.private_subnet_az2_cidr                                 
+  environment             = var.environment
+  project_name            = var.project_name
+  vpc_cidr                = var.vpc_cidr
+  public_subnet_az1_cidr  = var.public_subnet_az1_cidr
+  public_subnet_az2_cidr  = var.public_subnet_az2_cidr
+  private_subnet_az1_cidr = var.private_subnet_az1_cidr
+  private_subnet_az2_cidr = var.private_subnet_az2_cidr
 }
 
 ###############################   EKS  ###############################
@@ -79,17 +79,17 @@ variable "ec2_instance_type" { type = string }
 #variable "subnet_ids" { type = string }
 
 module "eks" {
-    source = "../../modules/eks"
+  source = "../../modules/eks"
 
-    environment  = var.environment
-    project_name = var.project_name
-    cluster_name = var.cluster_name
-    ec2_instance_type = var.ec2_instance_type
+  environment       = var.environment
+  project_name      = var.project_name
+  cluster_name      = var.cluster_name
+  ec2_instance_type = var.ec2_instance_type
 
-    # Outputs
-    subnet_ids = module.vpc.private_subnet_ids
-    private_subnet_ids = module.vpc.private_subnet_ids
-    vpc_id = module.vpc.vpc_id
+  # Outputs
+  subnet_ids         = module.vpc.private_subnet_ids
+  private_subnet_ids = module.vpc.private_subnet_ids
+  vpc_id             = module.vpc.vpc_id
 }
 
 ###############################   IRSA  ###############################
@@ -106,7 +106,7 @@ variable "service_account_name" { type = string }
 # OPTIMIZED PARENT LOOP: Replaces both old module blocks completely
 module "irsa" {
   source   = "../../modules/irsa"
-  for_each = toset(["kube-system", "flux-system"]) 
+  for_each = toset(["kube-system", "flux-system"])
 
   environment          = var.environment
   cluster_name         = var.cluster_name
@@ -146,13 +146,13 @@ variable "known_hosts" { type = string }
 
 # Secret
 module "k8s-secret" {
-    source = "../../modules/k8s-secret"
-   
-    github_token = var.github_token
-    identity_public_key = var.identity_public_key
-    identity_private_key = var.identity_private_key
-    known_hosts = var.known_hosts
-    depends_on = [module.eks]
+  source = "../../modules/k8s-secret"
+
+  github_token         = var.github_token
+  identity_public_key  = var.identity_public_key
+  identity_private_key = var.identity_private_key
+  known_hosts          = var.known_hosts
+  depends_on           = [module.eks]
 }
 
 ###############################  ECR  ###############################
@@ -164,5 +164,5 @@ module "ecr" {
   source = "../../modules/ecr"
 
   github_token = var.github_token
-  environment = var.environment
- }
+  environment  = var.environment
+}

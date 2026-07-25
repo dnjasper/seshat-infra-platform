@@ -1,18 +1,3 @@
-data "aws_caller_identity" "current" {}
-
-# data "aws_eks_cluster" "seshat" {
-#     name = "${var.cluster_name}-cluster"
-# }
-
-locals {
-    seshat_oidc_issuer = replace(var.oidc_provider_url, "https://","")
-}
-
-
-
-
-
-
 data "aws_iam_policy_document" "seshat_trust_policy" {
   statement {
     effect = "Allow"
@@ -23,7 +8,10 @@ data "aws_iam_policy_document" "seshat_trust_policy" {
 
     principals {
         type = "Federated"
-        identifiers = ["arn:aws:iam::${data.aws_caller_identity.current.account_id}:oidc-provider/${local.seshat_oidc_issuer}"]
+       # identifiers = ["arn:aws:iam::${data.aws_caller_identity.current.account_id}:oidc-provider/${local.seshat_oidc_issuer}"]
+         identifiers = [
+           var.oidc_provider_arn]
+
     }
 
 
@@ -41,15 +29,11 @@ data "aws_iam_policy_document" "seshat_trust_policy" {
         values = ["sts.amazonaws.com"]
     }
   }
+
 }
 
 
-
-   resource "aws_iam_role" "seshat_role" {
-    name = "seshat_role_${var.namespace}"
-
-   assume_role_policy = data.aws_iam_policy_document.seshat_trust_policy.json
-   }
+  
 
   
 
