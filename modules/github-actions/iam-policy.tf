@@ -30,6 +30,19 @@ resource "aws_iam_role_policy" "github_actions_tfstate" {
         Resource = [
           "arn:aws:s3:::seshat-infra-tfstate/*"
         ]
+      },
+       {
+        Effect = "Allow"
+
+        Action = [
+          "dynamodb:GetItem",
+          "dynamodb:PutItem",
+          "dynamodb:DeleteItem"
+        ]
+
+        Resource = [
+          "arn:aws:dynamodb:us-east-1:468402787427:table/my-ran-infrastructure-locks"
+        ]
       }
     ]
   })
