@@ -12,3 +12,8 @@ variable "known_hosts" {
     type = string
     sensitive = true
 }
+
+variable "github_token" {
+    type = string
+    sensitive = true
+}

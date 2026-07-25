@@ -152,8 +152,8 @@ variable "identity_private_key" { type = string }
 variable "known_hosts" { type = string }
 
 # Secret
-module "k8s-secret" {
-    source = "../../modules/k8s-secret"
+module "flux" {
+    source = "../../modules/flux"
    
     github_token = var.github_token
     identity_public_key = var.identity_public_key

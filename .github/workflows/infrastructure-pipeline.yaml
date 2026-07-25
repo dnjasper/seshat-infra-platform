@@ -69,10 +69,10 @@ jobs:
       run: terraform init && terraform validate
 
     - name: Deploy Code into Infrastructure
-      run: terraform apply -target=module.vpc -target=module.ecr -target=,odule.eks -auto-approve
+      run: terraform apply -target=github-actions -target=module.vpc -target=module.ecr -target=module.eks -auto-approve
 
     - name: Push Remaining IRSA
       run: terraform apply -target=module.irsa -auto-approve
 
     - name: Push Remaining Secret
-      run: terraform apply -target=module.kis-secret -auto-approve
+      run: terraform apply -target=module.flux -auto-approve
