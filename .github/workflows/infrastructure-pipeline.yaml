@@ -14,7 +14,7 @@ jobs:
         contents: read
     defaults:
       run:
-        working-directory: ./environment/dev
+        working-directory: ./environments/dev
     env:
       TF_VAR_identity_private_key: ${{ secrets.IDENTITY_PRIVATE_KEY }}
       TF_VAR_identity_public_key: ${{ secrets.IDENTITY_PUBLIC_KEY }}
