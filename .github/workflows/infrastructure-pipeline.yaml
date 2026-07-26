@@ -71,11 +71,11 @@ jobs:
     - name: Deploy Code into Infrastructure
       env:
         TF_VAR_github_token: ${{ secrets.MY_GITHUB_PAT }}
+      run: terraform apply -auto-approve
+    #  run: terraform apply -target=module.github-actions -target=module.vpc -target=module.ecr -target=module.eks -auto-approve
+       
+    # - name: Push Remaining IRSA
+    #   run: terraform apply -target=module.irsa -auto-approve
 
-      run: terraform apply -target=module.github-actions -target=module.vpc -target=module.ecr -target=module.eks -auto-approve
-
-    - name: Push Remaining IRSA
-      run: terraform apply -target=module.irsa -auto-approve
-
-    - name: Push Remaining Secret
-      run: terraform apply -target=module.flux -auto-approve
+    # - name: Push Remaining Secret
+    #   run: terraform apply -target=module.flux -auto-approve
