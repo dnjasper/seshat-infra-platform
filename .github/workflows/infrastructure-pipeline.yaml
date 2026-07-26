@@ -69,6 +69,9 @@ jobs:
       run: terraform init && terraform validate
 
     - name: Deploy Code into Infrastructure
+      env:
+        TF_VAR_github_token: ${{ secrets.MY_GITHUB_PAT }}
+
       run: terraform apply -target=module.github-actions -target=module.vpc -target=module.ecr -target=module.eks -auto-approve
 
     - name: Push Remaining IRSA
