@@ -14,7 +14,7 @@ jobs:
         contents: read
     defaults:
       run:
-        working-directory: ./environments/dev
+        working-directory: ./environments/dev/platform
     env:
       TF_VAR_identity_private_key: ${{ secrets.FLUX_IDENTITY_PRIVATE_KEY }}
       TF_VAR_identity_public_key: ${{ secrets.FLUX_IDENTITY_PUBLIC_KEY }}
