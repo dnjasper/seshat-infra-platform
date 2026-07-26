@@ -90,7 +90,15 @@ module "eks" {
     subnet_ids = module.vpc.private_subnet_ids
     private_subnet_ids = module.vpc.private_subnet_ids
     vpc_id = module.vpc.vpc_id
+    # cluster_name = module.eks.cluster_name
+    # oidc_provider_arn = module.eks.oidc_provider_arn
+    # cluster_oidc_issuer_url = module.eks.cluster_oidc_issuer_url
+    # cluster_certificate_authority_data = module.eks.cluster_certificate_authority_data
 }
+
+
+
+
 
 ###############################   IRSA  ###############################
 ## IRSA Varriables
