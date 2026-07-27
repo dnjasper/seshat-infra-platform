@@ -34,7 +34,7 @@ module "eks" {
         # most_recent = true
           resolve_conflicts = "OVERWRITE"
           before_compute = true
-          addon_version  = "v1.19.0-eksbuild.1"
+          addon_version  = "v1.22.4-eksbuild.3"
         }
     
 
@@ -43,12 +43,12 @@ module "eks" {
        }
 
         coredns = {
-          addon_version     = "v1.11.4-eksbuild.2"
+          addon_version     = "v1.11.4-eksbuild.40"
           resolve_conflicts = "OVERWRITE"
       }
 
         kube-proxy = {
-          addon_version     = "v1.32.0-eksbuild.2"
+          addon_version     = "v1.32.13-eksbuild.20"
           resolve_conflicts = "OVERWRITE"
         }
     }
