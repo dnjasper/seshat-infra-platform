@@ -32,6 +32,7 @@ module "eks" {
     addons = {
         vpc_cni = {
         # most_recent = true
+          resolve_conflicts = "OVERWRITE"
           before_compute = true
           addon_version  = "v1.19.0-eksbuild.1"
         }
@@ -41,10 +42,16 @@ module "eks" {
           before_compute = true
        }
 
-      coredns = {}
+        coredns = {
+          addon_version     = "v1.11.4-eksbuild.2"
+          resolve_conflicts = "OVERWRITE"
+      }
 
-      kube-proxy = {}
-  }
+        kube-proxy = {
+          addon_version     = "v1.32.0-eksbuild.2"
+          resolve_conflicts = "OVERWRITE"
+        }
+    }
    eks_managed_node_groups = {
     seshat = {
         ami_type = "AL2023_x86_64_STANDARD"
