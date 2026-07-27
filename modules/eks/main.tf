@@ -3,7 +3,7 @@ module "eks" {
     version = "~> 21.0"
 
     name = "${var.cluster_name}-cluster"
-    kubernetes_version = "1.32"
+    kubernetes_version = "1.32.0"
 
     tags = {
         Environment = var.environment
