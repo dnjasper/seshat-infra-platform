@@ -29,22 +29,22 @@ module "eks" {
     
     endpoint_public_access = true
 
-#     addons = {
-#         vpc_cni = {
-#         # most_recent = true
-#           before_compute = true
-#           addon_version  = "v1.19.0-eksbuild.1"
-#         }
+    addons = {
+        vpc_cni = {
+        # most_recent = true
+          before_compute = true
+          addon_version  = "v1.19.0-eksbuild.1"
+        }
     
 
-#         eks-pod-identity-agent = {
-#           before_compute = true
-#        }
+        eks-pod-identity-agent = {
+          before_compute = true
+       }
 
-#       coredns = {}
+      coredns = {}
 
-#       kube-proxy = {}
-#   }
+      kube-proxy = {}
+  }
    eks_managed_node_groups = {
     seshat = {
         ami_type = "AL2023_x86_64_STANDARD"
