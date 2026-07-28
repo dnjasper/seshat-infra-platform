@@ -85,7 +85,7 @@ module "eks" {
     project_name = var.project_name
     cluster_name = var.cluster_name
     ec2_instance_type = var.ec2_instance_type
-    github_actions_role_arn = var.github_actions_role_arn
+    github_actions_role_arn = aws_iam_role.github_actions_role.arn
 
     # Outputs
     subnet_ids = module.vpc.private_subnet_ids
