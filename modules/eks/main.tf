@@ -30,7 +30,7 @@ module "eks" {
     endpoint_public_access = true
 
     addons = {
-        vpc_cni = {
+        vpc-cni = {
         # most_recent = true
           resolve_conflicts = "OVERWRITE"
           before_compute = true
