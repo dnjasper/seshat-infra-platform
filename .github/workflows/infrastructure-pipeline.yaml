@@ -90,7 +90,7 @@ jobs:
     - name: Verify Terraform Code Syntax
       run: terraform init && terraform validate
 
-    - name: Deploy Code into Infra
+    - name: Deploy Code into Infrastructure
       env:
         TF_VAR_github_token: ${{ secrets.MY_GITHUB_PAT }}
       run: terraform apply -auto-approve
