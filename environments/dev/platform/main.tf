@@ -119,8 +119,7 @@ variable "service_account_name" { type = string }
 # OPTIMIZED PARENT LOOP: Replaces both old module blocks completely
 module "irsa" {
   source   = "../../../modules/irsa"
-  for_each = toset(["kube-system", "flux-system"]) 
-
+   
   environment          = var.environment
   cluster_name         = var.cluster_name
   oidc_provider_arn    = module.eks.oidc_provider_arn
