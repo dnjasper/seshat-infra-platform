@@ -30,7 +30,7 @@ module "eks" {
     endpoint_public_access = true
     access_entries = {
     github_actions = {
-      principal_arn = var.github_actions_role.arn
+      principal_arn = var.github_actions_role_arn
 
       policy_associations = {
         admin = {
