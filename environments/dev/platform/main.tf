@@ -94,7 +94,7 @@ module "eks" {
     subnet_ids = module.vpc.private_subnet_ids
     private_subnet_ids = module.vpc.private_subnet_ids
     vpc_id = module.vpc.vpc_id
-    github_actions_role_arn = module.github_actions.github_actions_role_arn
+    github_actions_role_arn = var.github_actions.github_actions_role_arn
 }
 
 
