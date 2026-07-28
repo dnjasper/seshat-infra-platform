@@ -29,6 +29,39 @@ module "eks" {
     
     endpoint_public_access = true
 
+
+    access_entries = {
+    github_actions = {
+      principal_arn = aws_iam_role.github_actions_role.arn
+
+      policy_associations = {
+        admin = {
+          policy_arn = "arn:aws:eks::aws:cluster-access-policy/AmazonEKSClusterAdminPolicy"
+
+          access_scope = {
+            type = "cluster"
+          }
+        }
+      }
+    }
+
+    admin_user = {
+      principal_arn = "arn:aws:iam::468402787427:user/seshat_jasper"
+
+      policy_associations = {
+        admin = {
+          policy_arn = "arn:aws:eks::aws:cluster-access-policy/AmazonEKSClusterAdminPolicy"
+
+          access_scope = {
+            type = "cluster"
+          }
+        }
+      }
+    }
+  }
+
+
+
     addons = {
         vpc-cni = {
         # most_recent = true
