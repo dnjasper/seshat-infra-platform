@@ -99,11 +99,11 @@ module "eks" {
 
 
 
-# Github Actions 
-module "github_actions" { 
-    source = "../../../modules/github-actions"
-    github_repository = "dnjasper@26615875/seshat-infra-platform@1308985333:*"
- }
+# # Github Actions 
+# module "github_actions" { 
+#     source = "../../../modules/github-actions"
+#     github_repository = "dnjasper@26615875/seshat-infra-platform@1308985333:*"
+#  }
 
 ###############################   IRSA  ###############################
 ## IRSA Varriables
