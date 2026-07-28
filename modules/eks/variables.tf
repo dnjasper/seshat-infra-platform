@@ -31,3 +31,8 @@ variable "private_subnet_ids" {
   type = list(string)
   description = "List of private subnet IDs for the EKS cluster"
 }
+
+variable "github_actions_role_arn" {
+  type = string
+  description = "The ARN of the GitHub Actions IAM role for EKS access"
+}

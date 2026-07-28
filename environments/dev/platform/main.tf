@@ -76,7 +76,7 @@ module "vpc" {
 # EKS Variables
 
 variable "ec2_instance_type" { type = string }
-#variable "subnet_ids" { type = string }
+variable "github_actions_role_arn" { type = string }
 
 module "eks" {
     source = "../../../modules/eks"
@@ -85,6 +85,7 @@ module "eks" {
     project_name = var.project_name
     cluster_name = var.cluster_name
     ec2_instance_type = var.ec2_instance_type
+    github_actions_role_arn = var.github_actions_role_arn
 
     # Outputs
     subnet_ids = module.vpc.private_subnet_ids
