@@ -28,8 +28,6 @@ module "eks" {
     authentication_mode = "API_AND_CONFIG_MAP"
     
     endpoint_public_access = true
-
-
     access_entries = {
     github_actions = {
       principal_arn = aws_iam_role.github_actions_role.arn
