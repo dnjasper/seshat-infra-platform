@@ -14,6 +14,12 @@ private_data_subnet_az2_cidr = "10.0.5.0/24"
 
 ec2_instance_type = "t3.medium"
 
+
+# Github-Actions
+
+github_actions_role_arn = "arn:aws:iam::468402787427:role/github_actions_role"
+
+
 # Secret Variables
 
 namespace            = "kube-system"
