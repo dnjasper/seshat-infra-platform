@@ -36,3 +36,8 @@ variable "github_actions_role_arn" {
   type = string
   description = "The ARN of the GitHub Actions IAM role for EKS access"
 }
+
+variable "github_actions_role" {
+  type = string
+  description = "The name of the GitHub Actions IAM role for EKS access"
+}
