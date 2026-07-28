@@ -77,6 +77,7 @@ module "vpc" {
 
 variable "ec2_instance_type" { type = string }
 variable "github_actions_role_arn" { type = string }
+variable "github_actions_role" { type = string }
 
 
 module "eks" {
@@ -86,6 +87,7 @@ module "eks" {
     project_name = var.project_name
     cluster_name = var.cluster_name
     ec2_instance_type = var.ec2_instance_type
+    github_actions_role = var.github_actions_role
    # github_actions_role_arn = aws_iam_role.github_actions_role.arn
 
     # Outputs
