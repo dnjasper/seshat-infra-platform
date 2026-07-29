@@ -36,6 +36,11 @@ provider "kubernetes" {
         module.eks.cluster_certificate_authority_data
     )
  #   token = data.aws_eks_cluster_auth.this.token
+    exec {
+    api_version = "client.authentication.k8s.io/v1beta1"
+    args        = ["eks", "get-token", "--cluster-name", "seshat-cluster"]
+    command     = "aws"
+  }
 }
 
 data "aws_eks_cluster_auth" "this" {
