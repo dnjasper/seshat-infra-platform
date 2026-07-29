@@ -24,7 +24,7 @@ module "eks" {
         }
     }
 
-    enable_cluster_creator_admin_permissions = true
+    enable_cluster_creator_admin_permissions = false
     authentication_mode = "API_AND_CONFIG_MAP"
     
     endpoint_public_access = true
