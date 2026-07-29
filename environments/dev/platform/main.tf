@@ -35,11 +35,11 @@ provider "kubernetes" {
     cluster_ca_certificate = base64decode(
         module.eks.cluster_certificate_authority_data
     )
-    token = data.aws_eks_cluster_auth.this.token
+ #   token = data.aws_eks_cluster_auth.this.token
 }
 
 data "aws_eks_cluster_auth" "this" {
-    name = var.cluster_name
+    name = module.eks.cluster_name
 }
 
 ###############################   VPC  ###############################
@@ -149,6 +149,10 @@ module "flux" {
     identity_private_key = var.identity_private_key
     known_hosts = var.known_hosts
     depends_on = [module.eks]
+
+    providers = {
+    kubernetes = kubernetes
+  }
 }
 
 ###############################  ECR  ###############################
