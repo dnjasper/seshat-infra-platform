@@ -11,6 +11,7 @@ private_subnet_az2_cidr = "10.0.3.0/24"
 private_data_subnet_az1_cidr = "10.0.4.0/24"
 private_data_subnet_az2_cidr = "10.0.5.0/24"
 
+# love
 
 ec2_instance_type = "t3.medium"
 
