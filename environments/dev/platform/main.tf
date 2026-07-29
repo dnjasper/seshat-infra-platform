@@ -38,7 +38,7 @@ provider "kubernetes" {
  #   token = data.aws_eks_cluster_auth.this.token
     exec {
     api_version = "client.authentication.k8s.io/v1beta1"
-    args        = ["eks", "get-token", "--cluster-name", "seshat-cluster"]
+    args        = ["eks", "get-token", "--cluster-name", "seshat-cluster", "us-east-1"]
     command     = "aws"
   }
 }
