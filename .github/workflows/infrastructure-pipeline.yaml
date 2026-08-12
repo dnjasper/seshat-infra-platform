@@ -59,7 +59,7 @@ jobs:
       id: github-app-token
       uses: actions/create-github-app-token@v2
       with:
-       app-id: ${{ vars.GITHUB_APP_ID }}
+     #  app-id: ${{ vars.GITHUB_APP_ID }}
        private-key: ${{ secrets.SESHATTHIRDREPOACCESS }}
        owner: dnjasper
        appId: ${{ vars.APPID }}
