@@ -54,6 +54,15 @@ jobs:
         role-to-assume: arn:aws:iam::468402787427:role/github_actions_role
         aws-region: ${{ secrets.AWS_REGION }}
         audience: sts.amazonaws.com
+    
+    - name: Create GitHub App token
+      id: github-app-token
+      uses: actions/create-github-app-token@v2
+      with:
+       app-id: ${{ vars.GITHUB_APP_ID }}
+       private-key: ${{ secrets.SESHATTHIRDREPOACCESS }}
+       owner: dnjasper
+       repositories: seshat-workload-platform
 
     # - name: Dump OIDC token claims
     #   shell: bash
