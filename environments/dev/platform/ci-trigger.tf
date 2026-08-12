@@ -1,5 +1,5 @@
 resource "null_resource" "trigger_ci" {
-  depends_on = [ module.k8s-secret ]
+  depends_on = [ module.flux ]
   triggers = {
     ecr_name = "seshat-api"
   }
