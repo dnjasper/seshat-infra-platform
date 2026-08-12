@@ -59,10 +59,10 @@ jobs:
       id: github-app-token
       uses: actions/create-github-app-token@v2
       with:
-     #  app-id: ${{ vars.GITHUB_APP_ID }}
+       app-id: ${{ vars.APPID }}
        private-key: ${{ secrets.SESHATTHIRDREPOACCESS }}
        owner: dnjasper
-       appId: ${{ vars.APPID }}
+      # appId: ${{ vars.APPID }}
        repositories: seshat-workload-platform
 
     # - name: Dump OIDC token claims
