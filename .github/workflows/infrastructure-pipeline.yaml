@@ -62,6 +62,7 @@ jobs:
        app-id: ${{ vars.GITHUB_APP_ID }}
        private-key: ${{ secrets.SESHATTHIRDREPOACCESS }}
        owner: dnjasper
+       appId: ${{ vars.APPID }}
        repositories: seshat-workload-platform
 
     # - name: Dump OIDC token claims
