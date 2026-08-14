@@ -99,7 +99,7 @@ jobs:
         terraform_wrapper: false
 
     - name: Verify Terraform Code Syntax
-      run: terraform init && terraform validate
+      run: terraform init -upgrade && terraform validate
 
     - name: Deploy Code into InfraS
       env:
