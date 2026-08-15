@@ -24,9 +24,9 @@ github_actions_role_arn = "arn:aws:iam::468402787427:role/github_actions_role"
 # Secret Variables
 
 namespace            = "kube-system"
-identity_public_key  = ""
-identity_private_key = ""
-known_hosts          = ""
+# identity_public_key  = ""
+# identity_private_key = ""
+# known_hosts          = ""
 
 # IRSA Variables
 
