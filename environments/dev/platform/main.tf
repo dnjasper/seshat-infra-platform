@@ -149,7 +149,7 @@ variable "known_hosts" { type = string }
 module "flux" {
     source = "../../../modules/flux"
    
-    github_token = var.github_token
+   # github_token = var.github_token
     identity_public_key = var.identity_public_key
     identity_private_key = var.identity_private_key
     known_hosts = var.known_hosts
