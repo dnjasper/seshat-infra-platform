@@ -97,9 +97,38 @@ jobs:
       with:
         terraform_version: 1.6.2
         terraform_wrapper: false
-
     - name: Verify Terraform Code Syntax
       run: terraform init -upgrade && terraform validate
+
+    - name: Verify Flux secrets are available
+      shell: bash
+      run: |
+        if [[ -n "$TF_VAR_identity_private_key" ]]; then
+          echo "identity_private_key: SET"
+        else
+          echo "identity_private_key: EMPTY"
+        fi
+
+        if [[ -n "$TF_VAR_identity_public_key" ]]; then
+          echo "identity_public_key: SET"
+        else
+          echo "identity_public_key: EMPTY"
+        fi
+
+        if [[ -n "$TF_VAR_known_hosts" ]]; then
+          echo "known_hosts: SET"
+        else
+          echo "known_hosts: EMPTY"
+        fi
+
+
+
+
+
+
+
+
+
 
     - name: Deploy Code into InfraS
       env:
