@@ -1,9 +1,9 @@
-resource "kubernetes_secret_v1" "flux-seshat-deploy" {
+resource "kubernetes_secret_v1" "seshat-deploy" {
   depends_on = [
     kubernetes_namespace_v1.flux-system
   ]
   metadata {
-    name = "flux-seshat-deploy"
+    name = "seshat-deploy"
     namespace = "flux-system"
   }
   type = "Opaque"
