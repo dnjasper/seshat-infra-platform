@@ -126,7 +126,12 @@ jobs:
 
 
 
-
+    - name: Check Flux variable lengths
+      shell: bash
+      run: |
+        echo "private key length: ${#TF_VAR_identity_private_key}"
+        echo "public key length: ${#TF_VAR_identity_public_key}"
+        echo "known_hosts length: ${#TF_VAR_known_hosts}"
 
 
 
