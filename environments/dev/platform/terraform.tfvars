@@ -19,11 +19,12 @@ ec2_instance_type = "t3.medium"
 # Github-Actions
 
 github_actions_role_arn = "arn:aws:iam::468402787427:role/github_actions_role"
+github_repository = "dnjasper@26615875/seshat-infra-platform@1308985333:*"
 
 
 # Secret Variables
 
-namespace            = "kube-system"
+namespace        = "kube-system"
 # identity_public_key  = ""
 # identity_private_key = ""
 # known_hosts          = ""

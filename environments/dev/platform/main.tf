@@ -105,12 +105,20 @@ module "eks" {
 
 
 
-# # Github Actions 
-# module "github_actions" { 
-#     source = "../../../modules/github-actions"
-#     github_repository = "dnjasper@26615875/seshat-infra-platform@1308985333:*"
-#  }
+# Github Actions 
+module "github-actions" { 
+    source = "../../../modules/github-actions"
+    github_repository = var.github_repository
+ }
 
+variable "github_repository" { type = string }
+
+
+############################### github-actions-ecr ###############################
+
+module "github-actions-ecr" {
+   source = "../../../modules/github-actions-ecr"
+}
 ###############################   IRSA  ###############################
 ## IRSA Varriables
 
