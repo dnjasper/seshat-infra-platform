@@ -133,8 +133,8 @@ jobs:
         echo "public key length: ${#TF_VAR_identity_public_key}"
         echo "known_hosts length: ${#TF_VAR_known_hosts}"
 
-    - name: Terraform Plan
-      run: terraform plan -replace='module.flux.kubernetes_secret_v1.flux-git-deploy'
+    # - name: Terraform Plan
+    #   run: terraform plan -replace='module.flux.kubernetes_secret_v1.flux-git-deploy'
 
     # - name: Deploy Code into InfraS
     #   env:
