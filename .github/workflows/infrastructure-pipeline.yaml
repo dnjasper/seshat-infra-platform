@@ -48,22 +48,22 @@ jobs:
 
     #     echo "$TOKEN" | cut -d '.' -f2 | base64 -d 2>/dev/null | jq .
 
-    - name: Access AWS
-      uses: aws-actions/configure-aws-credentials@v4
-      with:
-        role-to-assume: arn:aws:iam::468402787427:role/github_actions_role
-        aws-region: ${{ secrets.AWS_REGION }}
-        audience: sts.amazonaws.com
+    # - name: Access AWS
+    #   uses: aws-actions/configure-aws-credentials@v4
+    #   with:
+    #     role-to-assume: arn:aws:iam::468402787427:role/github_actions_role
+    #     aws-region: ${{ secrets.AWS_REGION }}
+    #     audience: sts.amazonaws.com
     
-    - name: Create GitHub App token
-      id: github-app-token
-      uses: actions/create-github-app-token@v2
-      with:
-       app-id: ${{ vars.APPID }}
-       private-key: ${{ secrets.SESHATTHIRDREPOACCESS }}
-       owner: dnjasper
-      # appId: ${{ vars.APPID }}
-       repositories: seshat-workload-platform
+    # - name: Create GitHub App token
+    #   id: github-app-token
+    #   uses: actions/create-github-app-token@v2
+    #   with:
+    #    app-id: ${{ vars.APPID }}
+    #    private-key: ${{ secrets.SESHATTHIRDREPOACCESS }}
+    #    owner: dnjasper
+    #   # appId: ${{ vars.APPID }}
+    #    repositories: seshat-workload-platform
 
     # - name: Dump OIDC token claims
     #   shell: bash
