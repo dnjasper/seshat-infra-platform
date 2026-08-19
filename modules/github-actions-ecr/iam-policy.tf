@@ -16,7 +16,7 @@ resource "aws_iam_role_policy" "github_actions_repo3" {
                 "ecr:PutImage",
                 "ecr:BatchGetImage"
             ],
-            "Resource": "arn:aws:ecr:us-east-1:468402787427:repository/seshat-api"
+            "Resource": "arn:aws:ecr:us-east-1:468402787427:repository/seshat_api"
         },
         {
             "Effect": "Allow",
