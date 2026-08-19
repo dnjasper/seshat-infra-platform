@@ -61,7 +61,7 @@ variable "private_subnet_az2_cidr" { type = string }
 variable "private_data_subnet_az1_cidr" { type = string }
 variable "private_data_subnet_az2_cidr" { type = string }
 variable "vpc_cidr" { type = string }
-
+variable "github_repository_repo3" { type = string }
 # VPC
 
 module "vpc" {
@@ -118,6 +118,7 @@ variable "github_repository" { type = string }
 
 module "github-actions-ecr" {
    source = "../../../modules/github-actions-ecr"
+   github_repository_repo3 = var.github_repository_repo3
 }
 ###############################   IRSA  ###############################
 ## IRSA Varriables

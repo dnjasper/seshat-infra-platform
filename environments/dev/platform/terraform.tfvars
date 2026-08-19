@@ -20,7 +20,7 @@ ec2_instance_type = "t3.medium"
 
 github_actions_role_arn = "arn:aws:iam::468402787427:role/github_actions_role"
 github_repository = "dnjasper@26615875/seshat-infra-platform@1308985333:*"
-
+github_repository_repo3 = "dnjasper@26615875/seshat-workload-platform@1329281238:*"
 
 # Secret Variables
 
