@@ -92,7 +92,7 @@ jobs:
           # FIX: Add this line so GitHub knows where to point the deployment.
         aws-region: us-east-1  
 
-    - name: Establish Terraform
+    - name: Establish Terraform   # i love terraform
       uses: hashicorp/setup-terraform@v4
       with:
         terraform_version: 1.6.2
