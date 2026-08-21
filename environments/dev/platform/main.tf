@@ -122,12 +122,12 @@ module "github-actions-ecr" {
 
 }
 
-import {
-  to = aws_iam_role.github_actions_role
-  id = "github_actions_role"
-}
+# import {
+#   to = aws_iam_role.github_actions_role
+#   id = "github_actions_role"
+# }
 
-data "aws_iam_policy_document" "github_actions_trust_policy" {}
+# data "aws_iam_policy_document" "github_actions_trust_policy" {}
 
 
 
