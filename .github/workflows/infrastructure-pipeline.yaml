@@ -141,8 +141,8 @@ jobs:
       #run: terraform plan -replace='module.flux.kubernetes_secret_v1.flux-git-deploy'
 
     - name: Deploy Code into InfraS
-      env:
-        TF_VAR_github_token: ${{ secrets.MY_GITHUB_PAT }}
+      # env:
+      #   TF_VAR_github_token: ${{ secrets.MY_GITHUB_PAT }}
       run: terraform plan
     
     - name: Apply Code into InfraS
