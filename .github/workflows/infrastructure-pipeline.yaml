@@ -65,18 +65,18 @@ jobs:
     #   # appId: ${{ vars.APPID }}
     #    repositories: seshat-workload-platform
 
-    - name: Dump OIDC token claims
-      shell: bash
-      run: |
-        echo "Requesting OIDC token..."
+    # - name: Dump OIDC token claims
+    #   shell: bash
+    #   run: |
+    #     echo "Requesting OIDC token..."
 
-        TOKEN=$(curl -s \
-          -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" \
-          "${ACTIONS_ID_TOKEN_REQUEST_URL}&audience=sts.amazonaws.com" | jq -r '.value')
+    #     TOKEN=$(curl -s \
+    #       -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" \
+    #       "${ACTIONS_ID_TOKEN_REQUEST_URL}&audience=sts.amazonaws.com" | jq -r '.value')
 
-        echo "Token received." 
+    #     echo "Token received." 
 
-        echo "$TOKEN" | cut -d '.' -f2 | base64 -d 2>/dev/null | jq .
+    #     echo "$TOKEN" | cut -d '.' -f2 | base64 -d 2>/dev/null | jq .
     - name: Debug GitHub identity
       run: |
         echo "Role: ${{ vars.AWS_ROLE_TO_ASSUME }}"
@@ -92,6 +92,10 @@ jobs:
           # FIX: Add this line so GitHub knows where to point the deployment.
         aws-region: us-east-1  
 
+
+    
+
+
     - name: Establish Terraform   # i love terraform
       uses: hashicorp/setup-terraform@v4
       with:
@@ -100,26 +104,26 @@ jobs:
     - name: Verify Terraform Code Syntax
       run: terraform init -upgrade && terraform validate
 
-    - name: Verify Flux secrets are available
-      shell: bash
-      run: |
-        if [[ -n "$TF_VAR_identity_private_key" ]]; then
-          echo "identity_private_key: SET"
-        else
-          echo "identity_private_key: EMPTY"
-        fi
+    # - name: Verify Flux secrets are available
+    #   shell: bash
+    #   run: |
+    #     if [[ -n "$TF_VAR_identity_private_key" ]]; then
+    #       echo "identity_private_key: SET"
+    #     else
+    #       echo "identity_private_key: EMPTY"
+    #     fi
 
-        if [[ -n "$TF_VAR_identity_public_key" ]]; then
-          echo "identity_public_key: SET"
-        else
-          echo "identity_public_key: EMPTY"
-        fi
+    #     if [[ -n "$TF_VAR_identity_public_key" ]]; then
+    #       echo "identity_public_key: SET"
+    #     else
+    #       echo "identity_public_key: EMPTY"
+    #     fi
 
-        if [[ -n "$TF_VAR_known_hosts" ]]; then
-          echo "known_hosts: SET"
-        else
-          echo "known_hosts: EMPTY"
-        fi
+    #     if [[ -n "$TF_VAR_known_hosts" ]]; then
+    #       echo "known_hosts: SET"
+    #     else
+    #       echo "known_hosts: EMPTY"
+    #     fi
 
 
 
