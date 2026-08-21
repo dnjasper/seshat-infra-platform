@@ -1,7 +1,4 @@
-import {
-  to = aws_iam_role.github_actions_role
-  id = "github_actions_role"
-}
+
 
 resource "aws_iam_role" "github_actions_role" {
   name = "github_actions_role"

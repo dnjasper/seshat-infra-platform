@@ -119,6 +119,17 @@ variable "github_repository" { type = string }
 module "github-actions-ecr" {
    source = "../../../modules/github-actions-ecr"
    github_repository_repo3 = var.github_repository_repo3
+
+}
+
+import {
+  to = aws_iam_role.github_actions_role
+  id = "github_actions_role"
+}
+
+import {
+  to = aws_iam_role_policy_attachment.gha_execution_power
+  id = "github_actions_role/arn:aws:iam::aws:policy/AdministratorAccess"
 }
 ###############################   IRSA  ###############################
 ## IRSA Varriables
