@@ -102,7 +102,7 @@ jobs:
         terraform_version: 1.6.2
         terraform_wrapper: false
     - name: Verify Terraform Code Syntax
-      run: terraform init -upgrade && terraform validate
+      run: terraform init -reconfigure && terraform validate
 
     # - name: Verify Flux secrets are available
     #   shell: bash
