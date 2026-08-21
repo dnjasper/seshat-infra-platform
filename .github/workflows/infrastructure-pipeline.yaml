@@ -35,6 +35,11 @@ jobs:
         echo "Event: ${{ github.event_name }}"
         echo "Workflow: ${{ github.workflow }}"
 
+    - name: Debug AWS role
+      run: |
+        echo "AWS_ROLE_TO_ASSUME is set: ${{ vars.AWS_ROLE_TO_ASSUME != '' }}"
+        echo "AWS_ROLE_TO_ASSUME: ${{ vars.AWS_ROLE_TO_ASSUME }}"
+
     # - name: Debug GitHub OIDC
     #   shell: bash
     #   run: |
