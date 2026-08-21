@@ -137,13 +137,13 @@ jobs:
         echo "public key length: ${#TF_VAR_identity_public_key}"
         echo "known_hosts length: ${#TF_VAR_known_hosts}"
 
-    - name: Terraform Plan
-      run: terraform plan -replace='module.flux.kubernetes_secret_v1.flux-git-deploy'
+    #- name: Terraform Plan
+      #run: terraform plan -replace='module.flux.kubernetes_secret_v1.flux-git-deploy'
 
     - name: Deploy Code into InfraS
       env:
         TF_VAR_github_token: ${{ secrets.MY_GITHUB_PAT }}
-      #run: terraform plan
+     # run: terraform plan
       run: terraform apply -auto-approve
      # run: terraform apply -target=module.github-actions -target=module.vpc -target=module.ecr -target=module.eks -auto-approve
        
