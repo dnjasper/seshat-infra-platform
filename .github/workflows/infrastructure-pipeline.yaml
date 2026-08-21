@@ -143,7 +143,9 @@ jobs:
     - name: Deploy Code into InfraS
       env:
         TF_VAR_github_token: ${{ secrets.MY_GITHUB_PAT }}
-     # run: terraform plan
+      run: terraform plan
+    
+    - name: Apply Code into InfraS
       run: terraform apply -auto-approve
      # run: terraform apply -target=module.github-actions -target=module.vpc -target=module.ecr -target=module.eks -auto-approve
        
