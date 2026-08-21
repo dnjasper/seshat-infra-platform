@@ -17,9 +17,11 @@ data "aws_iam_policy_document" "github_actions_trust_policy" {
          }
 
          condition { 
-          test = "StringLike"
+          test = "StringEquals"
           variable = "token.actions.githubusercontent.com:sub"
-          values   =  "repo:dnjasper/seshat-infra-platform:*"
+          values   =  [
+            "repo:dnjasper@26615875/seshat-infra-platform@1308985333:ref:refs/heads/main"
+          ]
        #   values   = ["repo:dnjasper@26615875/seshat-infra-platform@1308985333:*"]
         #  values   = ["repo:${var.github_repository}:*"]
      }
