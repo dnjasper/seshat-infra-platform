@@ -37,9 +37,6 @@ jobs:
 
     - name: Debug GitHub OIDC
       shell: bash
-      env:
-        ACTIONS_ID_TOKEN_REQUEST_TOKEN: ${{ secrets.ACTIONS_ID_TOKEN_REQUEST_TOKEN }}
-        ACTIONS_ID_TOKEN_REQUEST_URL: ${{ secrets.ACTIONS_ID_TOKEN_REQUEST_URL }}
       run: |
         set -euo pipefail
 
@@ -49,10 +46,6 @@ jobs:
         RESPONSE=$(curl -sS \
           -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" \
           "${ACTIONS_ID_TOKEN_REQUEST_URL}&audience=sts.amazonaws.com")
-
-        echo "OIDC response received: ${RESPONSE:+yes}"
-
-        echo "$RESPONSE" | jq 'keys'
 
         TOKEN=$(echo "$RESPONSE" | jq -r '.value // empty')
 
@@ -64,16 +57,25 @@ jobs:
 
         echo "OIDC token received"
 
-        PAYLOAD=$(echo "$TOKEN" | cut -d '.' -f2 | base64 -d 2>/dev/null)
+        export TOKEN
 
-        echo "OIDC subject:"
-        echo "$PAYLOAD" | jq -r '.sub'
+        python3 <<'PY'
+        import os
+        import json
+        import base64
 
-        echo "OIDC audience:"
-        echo "$PAYLOAD" | jq -r '.aud'
+        token = os.environ["TOKEN"]
+        payload = token.split(".")[1]
+        payload += "=" * (-len(payload) % 4)
 
-        echo "OIDC issuer:"
-        echo "$PAYLOAD" | jq -r '.iss'
+        claims = json.loads(base64.urlsafe_b64decode(payload))
+
+        print("OIDC subject:", claims.get("sub"))
+        print("OIDC audience:", claims.get("aud"))
+        print("OIDC issuer:", claims.get("iss"))
+        print("OIDC repository:", claims.get("repository"))
+        print("OIDC ref:", claims.get("ref"))
+        PY
     # - name: Dump OIDC token claims
     #   shell: bash
     #   run: |
