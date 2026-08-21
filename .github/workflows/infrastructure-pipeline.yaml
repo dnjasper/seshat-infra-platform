@@ -35,7 +35,7 @@ jobs:
         echo "Event: ${{ github.event_name }}"
         echo "Workflow: ${{ github.workflow }}"
 
-    # - name: Show OIDC claims
+    # - name: Show OIDC claims  # Terraform is a monster
     #   shell: bash
     #   run: |
     #     set -euo pipefail
