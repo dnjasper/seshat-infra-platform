@@ -122,10 +122,10 @@ module "github-actions-ecr" {
 
 }
 
-# import {
-#   to = aws_iam_role.github_actions_role
-#   id = "github_actions_role"
-# }
+import {
+  to = aws_iam_role.github_actions_role
+  id = "github_actions_role"
+}
 
 # data "aws_iam_policy_document" "github_actions_trust_policy" {}
 
@@ -133,10 +133,10 @@ module "github-actions-ecr" {
 
 
 
-import {
-  to = aws_iam_role_policy_attachment.gha_execution_power
-  id = "github_actions_role/arn:aws:iam::aws:policy/AdministratorAccess"
-}
+# import {
+#   to = aws_iam_role_policy_attachment.gha_execution_power
+#   id = "github_actions_role/arn:aws:iam::aws:policy/AdministratorAccess"
+# }
 
 
 
