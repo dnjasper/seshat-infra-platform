@@ -130,13 +130,16 @@ import {
 # data "aws_iam_policy_document" "github_actions_trust_policy" {}
 
 
+import {
+  to = module.github-actions.aws_iam_openid_connect_provider.github_actions
+  id = "arn:aws:iam::468402787427:oidc-provider/://githubusercontent.com"
+}
 
 
-
-# import {
-#   to = aws_iam_role_policy_attachment.gha_execution_power
-#   id = "github_actions_role/arn:aws:iam::aws:policy/AdministratorAccess"
-# }
+import {
+  to = aws_iam_role_policy_attachment.gha_execution_power
+  id = "github_actions_role/arn:aws:iam::aws:policy/AdministratorAccess"
+}
 
 
 
