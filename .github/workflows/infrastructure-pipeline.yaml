@@ -19,7 +19,8 @@ jobs:
       TF_VAR_identity_private_key: ${{ secrets.FLUX_IDENTITY_PRIVATE_KEY }}
       TF_VAR_identity_public_key: ${{ secrets.FLUX_IDENTITY_PUBLIC_KEY }}
       TF_VAR_known_hosts: ${{ secrets.FLUX_KNOWN_HOSTS }}
-      TF_VAR_github_token: ${{ secrets.GH_TOKEN }}
+     # TF_VAR_github_token: ${{ secrets.GH_TOKEN }}
+      TF_VAR_github_token: ${{ secrets.MY_GITHUB_PAT }}
 
 
     steps:
