@@ -44,11 +44,11 @@ data "aws_eks_cluster_auth" "this" {
 
 
 
-# module "github_actions" { 
-#   source = "../../../modules/github-actions"
+module "github_actions" { 
+  source = "../../../modules/github-actions"
 
-#   github_repository = "dnjasper@26615875/seshat-infra-platform@1308985333:*"
-# }
+  github_repository = "dnjasper@26615875/seshat-infra-platform@1308985333:*"
+}
 
 
 ######################################  VARIABLES  #################################
