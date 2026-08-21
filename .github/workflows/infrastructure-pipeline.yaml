@@ -7,7 +7,7 @@ on:
 
 jobs:
   infrastructure:
-    name: Create Cloud Infrastructure  # Love
+    name: Create Cloud Infrastructure 
     runs-on: ubuntu-latest
     permissions:
         id-token: write
