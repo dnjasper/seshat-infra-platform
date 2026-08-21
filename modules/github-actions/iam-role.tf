@@ -1,4 +1,4 @@
-
+# Fun times
 
 resource "aws_iam_role" "github_actions_role" {
   name = "github_actions_role"
