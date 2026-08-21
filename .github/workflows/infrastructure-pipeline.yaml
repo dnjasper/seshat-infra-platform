@@ -189,7 +189,7 @@ jobs:
         for key in ["sub", "aud", "iss", "repository", "ref", "event_name", "environment"]:
             print(f"{key}: {claims.get(key)}")
         PY
- # good vibes
+ 
 
     - name: Access AWS
       uses: aws-actions/configure-aws-credentials@v4
