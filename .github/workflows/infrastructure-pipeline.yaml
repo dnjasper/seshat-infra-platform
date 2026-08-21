@@ -96,7 +96,7 @@ jobs:
     
 
 
-    - name: Establish Terraform   # i love terraform
+    - name: Establish Terraform   
       uses: hashicorp/setup-terraform@v4
       with:
         terraform_version: 1.6.2
