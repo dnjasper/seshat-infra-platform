@@ -82,6 +82,11 @@ module "eks" {
           addon_version     = "v1.32.13-eksbuild.20"
           resolve_conflicts = "OVERWRITE"
         }
+
+        metrics_server = {
+          addon_version     = "v0.13.1-eksbuild.1"
+          resolve_conflicts = "OVERWRITE"
+        }
     }
    eks_managed_node_groups = {
     seshat = {
