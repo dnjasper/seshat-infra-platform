@@ -84,7 +84,7 @@ module "eks" {
         }
 
         metrics_server = {
-          addon_version     = "v0.13.1-eksbuild.1"
+          addon_version     = "v0.8.1-eksbuild.16"
           resolve_conflicts = "OVERWRITE"
         }
     }
