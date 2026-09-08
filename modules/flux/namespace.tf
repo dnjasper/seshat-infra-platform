@@ -2,7 +2,7 @@ terraform {
   required_providers {
     kubernetes = {
       source  = "hashicorp/kubernetes"
-      version = "~> 2.0" # Maps it to the official verified driver
+      version = "~> 2.0" 
     }
   }
 }

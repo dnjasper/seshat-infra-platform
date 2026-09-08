@@ -92,14 +92,12 @@ module "eks" {
   project_name      = var.project_name
   cluster_name      = var.cluster_name
   ec2_instance_type = var.ec2_instance_type
-  # github_actions_role = var.github_actions_role
-  # github_actions_role_arn = aws_iam_role.github_actions_role.arn
+ 
 
   # Outputs
   subnet_ids         = module.vpc.private_subnet_ids
   private_subnet_ids = module.vpc.private_subnet_ids
   vpc_id             = module.vpc.vpc_id
-  # github_actions_role_arn = var.github_actions.github_actions_role_arn
   github_actions_role_arn = "arn:aws:iam::468402787427:role/github_actions_role"
 }
 
@@ -121,25 +119,6 @@ module "github-actions-ecr" {
   github_repository_repo3 = var.github_repository_repo3
 
 }
-
-# import {
-#   to = aws_iam_role.github_actions_role
-#   id = "github_actions_role"
-# }
-
-# data "aws_iam_policy_document" "github_actions_trust_policy" {}
-
-
-# import {
-#   to = module.github-actions.aws_iam_openid_connect_provider.github_actions
-#   id = "arn:aws:iam::468402787427:oidc-provider/token.actions.githubusercontent.com"
-# }
-
-
-# import {
-#   to = aws_iam_role_policy_attachment.gha_execution_power
-#   id = "github_actions_role/arn:aws:iam::aws:policy/AdministratorAccess"
-# }
 
 
 

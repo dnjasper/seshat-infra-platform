@@ -118,6 +118,9 @@ module "eks" {
         tags = {
           Name = "seshat-node-group"
         }
+        lifecycle = {
+          create_before_destroy = true
+        }
      }
    }
   }
