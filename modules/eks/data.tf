@@ -1,5 +1,5 @@
 data "aws_launch_template" "eks_telco_nodes" {
-  name = var.launch_template
+  name = data.aws_launch_template.eks_telco_nodes.id 
 }
 
 data "aws_ami" "eks_worker_ami" {

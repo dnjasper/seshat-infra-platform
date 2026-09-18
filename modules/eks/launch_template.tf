@@ -10,7 +10,7 @@ locals {
 resource "aws_launch_template" "eks_telco_nodes" {
   name_prefix   = "seshat-eks-node-"
   description   = "Launch template for EKS worker nodes with advanced network tuning"
-  image_id      = var.ami_id # Standard optimized EKS AMI
+  image_id      =  data.aws_ami_id.eks_worker_ami       
   instance_type = "t3.medium"
   
 
