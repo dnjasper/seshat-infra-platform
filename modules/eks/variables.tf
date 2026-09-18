@@ -47,6 +47,11 @@ variable "launch_template" {
   type = string
   description = "The name of the launch template for EKS worker nodes"
 }
+
+variable "ami_release_version" {
+  type = string
+  description = "The release version of the Amazon EKS optimized AMI"
+}
 # variable "github_actions_role" {
 #   type = string
 #   description = "The name of the GitHub Actions IAM role for EKS access"
