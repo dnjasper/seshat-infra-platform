@@ -37,6 +37,16 @@ variable "github_actions_role_arn" {
   description = "The ARN of the GitHub Actions IAM role for EKS access"
 }
 
+
+variable "ami_id" {
+  type = string
+  description = "The AMI ID for the EKS worker nodes"
+}
+
+variable "launch_template" {
+  type = string
+  description = "The name of the launch template for EKS worker nodes"
+}
 # variable "github_actions_role" {
 #   type = string
 #   description = "The name of the GitHub Actions IAM role for EKS access"
