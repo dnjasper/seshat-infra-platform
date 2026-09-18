@@ -84,6 +84,7 @@ variable "ec2_instance_type" { type = string }
 variable "github_actions_role_arn" { type = string }
 variable "ami_id" { type = string } 
 variable "launch_template" { type = string }
+variable "ami_release_version" { type = string }
 
 module "eks" {
   source = "../../../modules/eks"
@@ -94,6 +95,7 @@ module "eks" {
   ec2_instance_type = var.ec2_instance_type
   ami_id         = var.ami_id
   launch_template   = var.launch_template
+  ami_release_version = var.ami_release_version
 
 
   # Outputs
