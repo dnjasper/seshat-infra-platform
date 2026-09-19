@@ -44,3 +44,12 @@ resource "aws_launch_template" "eks_telco_nodes" {
     create_before_destroy = true
   }
 }
+
+
+# data "aws_launch_template" "eks_telco_nodes" {
+ 
+#  filter {
+#   name = "launch-template-name"
+#   values = ["eks-*"] 
+# }
+# }

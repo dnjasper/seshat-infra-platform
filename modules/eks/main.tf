@@ -103,7 +103,7 @@ module "eks" {
         desired_size = 2
         
         create_launch_template = false
-        launch_template_id     = data.aws_launch_template.eks_telco_nodes.id
+       # launch_template_id     = data.aws_launch_template.eks_telco_nodes.id
         launch_template_version = "$Latest"
         
         # create_launch_template = false
