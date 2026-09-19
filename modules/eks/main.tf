@@ -91,6 +91,7 @@ module "eks" {
    eks_managed_node_groups = {
     seshat = {
         ami_type = "AL2023_x86_64_STANDARD"
+        ami_id   = "ami-09328f900e24e31f1"
        # instance_types = ["t3.medium"]
 
        # ami_release_version = "1.32.13-20260724" 
