@@ -109,12 +109,12 @@ module "eks" {
 
 
 # Github Actions 
-# module "github-actions" {
-#   source            = "../../../modules/github-actions"
-#   github_repository = var.github_repository
-# }
+module "github-actions" {
+  source            = "../../../modules/github-actions"
+  github_repository = var.github_repository
+}
 
-# variable "github_repository" { type = string }
+variable "github_repository" { type = string }
 
 
 ############################### github-actions-ecr ###############################
