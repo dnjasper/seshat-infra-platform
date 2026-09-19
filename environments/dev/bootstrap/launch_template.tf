@@ -1,18 +1,18 @@
 # 2. Define the Hardware Launch Template
 locals {
-   eks_node_user_data = <<-EOT
+  eks_node_user_data = <<-EOT
      #!/bin/bash
      sysctl -w net.ipv4.conf.all.rp_filter=2
      /etc/eks/bootstrap.sh ${var.cluster_name}
     EOT
-}  
+}
 
 resource "aws_launch_template" "eks_telco_nodes" {
   name_prefix   = "seshat-eks-node-"
   description   = "Launch template for EKS worker nodes with advanced network tuning"
-  image_id      =  data.aws_ami.eks_worker_ami.id
+  image_id      = data.aws_ami.eks_worker_ami.id
   instance_type = "t3.medium"
-  
+
 
   # Enforce encrypted storage volumes for production compliance
   block_device_mappings {
@@ -25,10 +25,24 @@ resource "aws_launch_template" "eks_telco_nodes" {
     }
   }
 
- 
- 
+
+
   # Inject the base64-encoded hardware tuning payload
-  user_data = base64encode(local.eks_node_user_data)
+  #user_data = base64encode(local.eks_node_user_data)
+
+  # EKS requires MIME multipart user data when using a custom launch template
+  user_data = base64encode(<<-EOT
+    MIME-Version: 1.0
+    Content-Type: multipart/mixed; boundary="==MYBOUNDARY=="
+
+    --==MYBOUNDARY==
+    Content-Type: text/x-shellscript; charset="us-ascii"
+
+    ${local.eks_node_user_data}
+
+    --==MYBOUNDARY==--
+  EOT
+  )
 
   # Explicitly tag the virtual hardware on creation
   tag_specifications {
@@ -47,7 +61,7 @@ resource "aws_launch_template" "eks_telco_nodes" {
 
 
 # data "aws_launch_template" "eks_telco_nodes" {
- 
+
 #  filter {
 #   name = "launch-template-name"
 #   values = ["eks-*"] 
@@ -55,6 +69,6 @@ resource "aws_launch_template" "eks_telco_nodes" {
 # }
 
 variable "cluster_name" {
-    description = "The name of the EKS cluster"
-    type        = string
+  description = "The name of the EKS cluster"
+  type        = string
 }

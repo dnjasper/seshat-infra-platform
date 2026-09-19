@@ -114,7 +114,7 @@ module "eks" {
          launch_template_id = "lt-04d46f3ec25274b3d"
         # launch_template_id     = data.aws_launch_template.eks_telco_nodes.id
         # launch_template_version = aws_launch_template.eks_telco_nodes.latest_version
-        launch_template_version = "$Default"
+        launch_template_version = "3"
 
         metadata_options = {
         http_endpoint = "enabled"
