@@ -95,7 +95,7 @@ module "eks" {
 
        # ami_release_version = "1.32.13-20260724" 
 
-        use_latest_ami_release_version = false
+       # use_latest_ami_release_version = false
 
         capacity_type = "ON_DEMAND"
         min_size = 1
