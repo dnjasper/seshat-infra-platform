@@ -108,8 +108,8 @@ module "eks" {
         launch_template_version = "$Latest"
         
         # create_launch_template = false
-         launch_template_id     = aws_launch_template.eks_telco_nodes.id
-         launch_template_version = aws_launch_template.eks_telco_nodes.latest_version
+         launch_template_id     = data.aws_launch_template.eks_telco_nodes.id
+        # launch_template_version = aws_launch_template.eks_telco_nodes.latest_version
 
         metadata_options = {
         http_endpoint = "enabled"
@@ -135,19 +135,5 @@ module "eks" {
   
 
   
-
-  # --- LINK THE LAUNCH TEMPLATE ---
-  # launch_template {
-  #   id      = aws_launch_template.eks_telco_nodes.id
-  #   version = aws_launch_template.eks_telco_nodes.latest_version
-  # }
-
-  # # Enforce dynamic lifecycle rolling updates
-  
-
-  # depends_on = [
-  #   aws_launch_template.eks_telco_nodes
-  # ]
-
 }
 
