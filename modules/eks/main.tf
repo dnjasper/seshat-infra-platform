@@ -104,11 +104,12 @@ module "eks" {
         desired_size = 2
         
         create_launch_template = false
-       # launch_template_id     = data.aws_launch_template.eks_telco_nodes.id
+        use_custom_launch_template = true
+        launch_template_id     = data.aws_launch_template.eks_telco_nodes.id
         launch_template_version = "$Latest"
         
-        create_launch_template = false
-        launch_template_name    = aws_launch_template.eks_telco_nodes.name
+       # create_launch_template = false
+       # launch_template_name    = aws_launch_template.eks_telco_nodes.name
         # launch_template_id     = data.aws_launch_template.eks_telco_nodes.id
         # launch_template_version = aws_launch_template.eks_telco_nodes.latest_version
 
