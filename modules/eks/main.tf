@@ -108,7 +108,7 @@ module "eks" {
         launch_template_version = "$Latest"
         
         # create_launch_template = false
-         launch_template_id     = data.aws_launch_template.eks_telco_nodes.id
+        # launch_template_id     = data.aws_launch_template.eks_telco_nodes.id
         # launch_template_version = aws_launch_template.eks_telco_nodes.latest_version
 
         metadata_options = {
