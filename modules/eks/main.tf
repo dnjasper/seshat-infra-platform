@@ -93,7 +93,7 @@ module "eks" {
         ami_type = "AL2023_x86_64_STANDARD"
         instance_types = ["t3.medium"]
 
-        ami_release_version = "1.32.13-20260724" 
+        #ami_release_version = "1.32.13-20260724" 
 
         use_latest_ami_release_version = false
 
