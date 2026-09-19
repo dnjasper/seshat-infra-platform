@@ -43,10 +43,10 @@ variable "github_actions_role_arn" {
 #   description = "The AMI ID for the EKS worker nodes"
 # }
 
-variable "launch_template" {
-  type = string
-  description = "The name of the launch template for EKS worker nodes"
-}
+# variable "launch_template" {
+#   type = string
+#   description = "The name of the launch template for EKS worker nodes"
+# }
 
 # variable "ami_release_version" {
 #   type = string
