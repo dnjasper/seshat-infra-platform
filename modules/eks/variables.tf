@@ -48,10 +48,10 @@ variable "launch_template" {
   description = "The name of the launch template for EKS worker nodes"
 }
 
-variable "ami_release_version" {
-  type = string
-  description = "1.30" 
-}
+# variable "ami_release_version" {
+#   type = string
+#   description = "1.30" 
+# }
 # variable "github_actions_role" {
 #   type = string
 #   description = "The name of the GitHub Actions IAM role for EKS access"
