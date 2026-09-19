@@ -94,7 +94,7 @@ module "eks" {
         instance_types = ["t3.medium"]
 
        # ami_release_version = "1.32.13-20260724" 
-       ami_release_version = null
+       ami_release_version = ""
 
        use_latest_ami_release_version = null
 
