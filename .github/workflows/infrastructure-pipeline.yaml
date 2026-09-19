@@ -33,7 +33,7 @@ jobs:
       uses: aws-actions/configure-aws-credentials@v4
       with:
         role-to-assume: ${{ vars.AWS_ROLE_TO_ASSUME }}
-          # FIX: Add this line so GitHub knows where to point the deployment.
+        # FIX: Add this line so GitHub knows where to point the deployment.
         aws-region: us-east-1  
 
 
