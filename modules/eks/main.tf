@@ -96,7 +96,7 @@ module "eks" {
        # ami_release_version = "1.32.13-20260724" 
        ami_release_version = null
 
-       use_latest_ami_release_version = false
+       use_latest_ami_release_version = null
 
         capacity_type = "ON_DEMAND"
         min_size = 1
@@ -107,7 +107,8 @@ module "eks" {
        # launch_template_id     = data.aws_launch_template.eks_telco_nodes.id
         launch_template_version = "$Latest"
         
-        # create_launch_template = false
+        create_launch_template = false
+        launch_template_name    = "aws_launch_template.eks_telco_nodes.name"
         # launch_template_id     = data.aws_launch_template.eks_telco_nodes.id
         # launch_template_version = aws_launch_template.eks_telco_nodes.latest_version
 
