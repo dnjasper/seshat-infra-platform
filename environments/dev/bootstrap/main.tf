@@ -105,7 +105,7 @@ variable "github_repository_repo3" { type = string }
 
 
 resource "aws_iam_role_policy_attachment" "gha_execution_power" {
-  role       = aws_iam_role.github_actions_role.name
+  role       = "github_actions_role"
   policy_arn = "arn:aws:iam::aws:policy/AdministratorAccess" 
 
   lifecycle {
