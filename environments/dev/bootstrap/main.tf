@@ -88,7 +88,7 @@ module "github_actions_repo1" {
 
 # 4. REPO 3 PIPELINE ROLE (Using your ECR specific module)
 module "github_actions_repo3" {
-  source            = "../../../modules/github-actions-ecr"
+  source            = "../../../modules/github-actions-ecr"  # IDK What the hell happened
   github_repository_repo3 = var.github_repository_repo3   
   
 }
