@@ -105,7 +105,7 @@ module "eks" {
         
         create_launch_template = false
         use_custom_launch_template = true
-        launch_template_id     = "aws_launch_template.eks_telco_nodes.id"
+        launch_template_id     = aws_launch_template.eks_telco_nodes.id
         # launch_template_version = "$Latest"
         
        # create_launch_template = false
