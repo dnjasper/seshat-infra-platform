@@ -53,3 +53,8 @@ resource "aws_launch_template" "eks_telco_nodes" {
 #   values = ["eks-*"] 
 # }
 # }
+
+variable "cluster_name" {
+    description = "The name of the EKS cluster"
+    type        = string
+}
