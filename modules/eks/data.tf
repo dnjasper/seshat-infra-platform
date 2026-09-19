@@ -1,10 +1,10 @@
-data "aws_launch_template" "eks_telco_nodes" {
+# data "aws_launch_template" "eks_telco_nodes" {
  
- filter {
-  name = "launch-template-name"
-  values = ["eks-*"] 
-}
-}
+#  filter {
+#   name = "launch-template-name"
+#   values = ["eks-*"] 
+# }
+# }
 data "aws_ami" "eks_worker_ami" {
   most_recent = true
   owners      = ["602401143452"] # Amazon EKS AMI account ID
