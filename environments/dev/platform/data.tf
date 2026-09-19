@@ -1,7 +1,7 @@
-data "terraform_remote_state" "bootstrap" {
-  backend = "local"
+# data "terraform_remote_state" "bootstrap" {
+#   backend = "local"
 
-  config = {
-    path = "../bootstrap/terraform.tfstate"
-  }
-}
+#   config = {
+#     path = "../bootstrap/terraform.tfstate"
+#   }
+# }

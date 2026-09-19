@@ -109,9 +109,12 @@ module "eks" {
         # launch_template_version = "$Latest"
         
        # create_launch_template = false
-         launch_template_name    = "aws_launch_template.eks_telco_nodes.name"
+        # launch_template_name    = "aws_launch_template.eks_telco_nodes.name"
+         #launch_template_id      = data.terraform_remote_state.bootstrap.outputs.eks_telco_nodes_launch_template_id
+         launch_template_id = "lt-04d46f3ec25274b3d"
         # launch_template_id     = data.aws_launch_template.eks_telco_nodes.id
         # launch_template_version = aws_launch_template.eks_telco_nodes.latest_version
+        launch_template_version = "$Default"
 
         metadata_options = {
         http_endpoint = "enabled"

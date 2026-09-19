@@ -38,6 +38,8 @@ variable "github_actions_role_arn" {
 }
 
 
+
+
 # variable "ami_id" {
 #   type = string
 #   description = "The AMI ID for the EKS worker nodes"
