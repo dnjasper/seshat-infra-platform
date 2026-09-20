@@ -19,7 +19,7 @@ resource "aws_iam_role_policy" "github_actions_repo3" {
             ],
             "Resource": [
                  "arn:aws:ecr:us-east-1:468402787427:repository/seshat_api",
-                 "arn:aws:ecr:us-east-1:468402787427:repository/upf_worker"
+              #   "arn:aws:ecr:us-east-1:468402787427:repository/upf_worker"
             ]
         },
         {
