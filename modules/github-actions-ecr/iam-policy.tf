@@ -15,7 +15,7 @@ resource "aws_iam_role_policy" "github_actions_repo3" {
                 "ecr:BatchCheckLayerAvailability",
                 "ecr:PutImage",
                 "ecr:BatchGetImage",
-                "ecr:InitiateLayerUploadAction"
+                "ecr:InitiateLayerUpload"
             ],
             "Resource": "arn:aws:ecr:us-east-1:468402787427:repository/seshat_api"
         },
