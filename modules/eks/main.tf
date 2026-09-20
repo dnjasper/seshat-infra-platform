@@ -92,12 +92,9 @@ module "eks" {
     seshat = {
         ami_type = "AL2023_x86_64_STANDARD"
         ami_id   = "ami-09328f900e24e31f1"
-       # instance_types = ["t3.medium"]
+        instance_types = ["t3.medium"]
 
-       # ami_release_version = "1.32.13-20260724" 
-      # ami_release_version = ""
-
-       use_latest_ami_release_version = null
+        ami_release_version = "1.32.13-20260724" 
 
         capacity_type = "ON_DEMAND"
         min_size = 1
@@ -106,16 +103,6 @@ module "eks" {
         
         create_launch_template = false
         use_custom_launch_template = true
-        #launch_template_id     = aws_launch_template.eks_telco_nodes.id
-        # launch_template_version = "$Latest"
-        
-       # create_launch_template = false
-        # launch_template_name    = "aws_launch_template.eks_telco_nodes.name"
-         #launch_template_id      = data.terraform_remote_state.bootstrap.outputs.eks_telco_nodes_launch_template_id
-         launch_template_id = "lt-04d46f3ec25274b3d"
-        # launch_template_id     = data.aws_launch_template.eks_telco_nodes.id
-        # launch_template_version = aws_launch_template.eks_telco_nodes.latest_version
-        launch_template_version = "3"
 
         metadata_options = {
         http_endpoint = "enabled"
