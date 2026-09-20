@@ -17,8 +17,10 @@ resource "aws_iam_role_policy" "github_actions_repo3" {
                 "ecr:BatchGetImage",
                 "ecr:InitiateLayerUpload"
             ],
-            "Resource": "arn:aws:ecr:us-east-1:468402787427:repository/seshat_api"
-            "Resource": "arn:aws:ecr:us-east-1:468402787427:repository/upf_worker" 
+            "Resource": [
+                 "arn:aws:ecr:us-east-1:468402787427:repository/seshat_api",
+                 "arn:aws:ecr:us-east-1:468402787427:repository/upf_worker"
+            ]
         },
         {
             "Effect": "Allow",
