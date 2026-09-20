@@ -102,7 +102,7 @@ module "eks" {
         desired_size = 2
         
         create_launch_template = false
-        use_custom_launch_template = true
+        use_custom_launch_template = false
 
         metadata_options = {
         http_endpoint = "enabled"
