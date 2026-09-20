@@ -1,10 +1,25 @@
-# 2. Define the Hardware Launch Template
 locals {
   eks_node_user_data = <<-EOT
-     #!/bin/bash
-     sysctl -w net.ipv4.conf.all.rp_filter=2
-     /etc/eks/bootstrap.sh ${var.cluster_name}
-    EOT
+    MIME-Version: 1.0
+    Content-Type: multipart/mixed; boundary="==MYBOUNDARY=="
+
+    --==MYBOUNDARY==
+    Content-Type: application/node.eks.aws
+
+    apiVersion: node.eks.aws/v1alpha1
+    kind: NodeConfig
+    spec:
+      cluster:
+        name: ${var.cluster_name}
+
+    --==MYBOUNDARY==
+    Content-Type: text/x-shellscript; charset="us-ascii"
+
+    #!/bin/bash
+    sysctl -w net.ipv4.conf.all.rp_filter=2
+
+    --==MYBOUNDARY==--
+  EOT
 }
 
 resource "aws_launch_template" "eks_telco_nodes" {
@@ -15,15 +30,15 @@ resource "aws_launch_template" "eks_telco_nodes" {
 
 
   # Enforce encrypted storage volumes for production compliance
-  block_device_mappings {
-    device_name = "/dev/xvda"
-    ebs {
-      volume_size           = 30
-      volume_type           = "gp3"
-      encrypted             = true
-      delete_on_termination = true
-    }
-  }
+  # block_device_mappings {
+  #   device_name = "/dev/xvda"
+  #   ebs {
+  #     volume_size           = 30
+  #     volume_type           = "gp3"
+  #     encrypted             = true
+  #     delete_on_termination = true
+  #   }
+  # }
 
 
 
@@ -31,18 +46,7 @@ resource "aws_launch_template" "eks_telco_nodes" {
   #user_data = base64encode(local.eks_node_user_data)
 
   # EKS requires MIME multipart user data when using a custom launch template
-  user_data = base64encode(<<-EOT
-    MIME-Version: 1.0
-    Content-Type: multipart/mixed; boundary="==MYBOUNDARY=="
-
-    --==MYBOUNDARY==
-    Content-Type: text/x-shellscript; charset="us-ascii"
-
-    ${local.eks_node_user_data}
-
-    --==MYBOUNDARY==--
-  EOT
-  )
+  user_data = base64encode(local.eks_node_user_data)
 
   # Explicitly tag the virtual hardware on creation
   tag_specifications {
