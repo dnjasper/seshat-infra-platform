@@ -107,7 +107,7 @@ module "eks" {
         metadata_options = {
         http_endpoint = "enabled"
         http_tokens = "required"
-        http_put_response_hop_limit = 2 # Fix this shit
+        http_put_response_hop_limit = 2 
     }
         iam_role_additional_policies = {
            AmazonEC2ContainerRegistryReadOnly = "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly"
