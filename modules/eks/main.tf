@@ -101,8 +101,8 @@ module "eks" {
         max_size = 2
         desired_size = 2
         
-         create_launch_template = false
-         use_custom_launch_template = false
+        #  create_launch_template = false
+        #  use_custom_launch_template = false
 
         metadata_options = {
         http_endpoint = "enabled"
