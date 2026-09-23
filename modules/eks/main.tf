@@ -109,6 +109,10 @@ module "eks" {
         http_tokens = "required"
         http_put_response_hop_limit = 2 
     }
+
+        post_bootstrap_user_data = <<-EOT
+          sysctl -w net.ipv4.conf.all.rp_filter=2
+        EOT
         iam_role_additional_policies = {
            AmazonEC2ContainerRegistryReadOnly = "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly"
         }
