@@ -110,18 +110,18 @@ module "eks" {
         http_put_response_hop_limit = 2 
     }
 
-        block_device_mappings = {
-        root = {
-          device_name = "/dev/xvda"
+  #       block_device_mappings = {
+  #       root = {
+  #         device_name = "/dev/xvda"
 
-          ebs = {
-            volume_size           = 40
-            volume_type           = "gp3"
-            encrypted             = true
-            delete_on_termination = true
-          }
-        }
-   }
+  #         ebs = {
+  #           volume_size           = 40
+  #           volume_type           = "gp3"
+  #           encrypted             = true
+  #           delete_on_termination = true
+  #         }
+  #       }
+  #  }
         
         post_bootstrap_user_data = <<-EOT
           sysctl -w net.ipv4.conf.all.rp_filter=2
