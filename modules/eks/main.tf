@@ -91,7 +91,7 @@ module "eks" {
    eks_managed_node_groups = {
     seshat = {
         ami_type = "AL2023_x86_64_STANDARD"
-        ami_id   = "ami-09328f900e24e31f1"
+      #  ami_id   = "ami-09328f900e24e31f1"
         instance_types = ["t3.medium"]
 
         ami_release_version = "1.32.13-20260724" 
@@ -101,8 +101,8 @@ module "eks" {
         max_size = 2
         desired_size = 2
         
-         create_launch_template = true
-         use_custom_launch_template = true
+         create_launch_template = false
+         use_custom_launch_template = false
 
         metadata_options = {
         http_endpoint = "enabled"
