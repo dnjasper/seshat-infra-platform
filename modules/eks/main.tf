@@ -102,7 +102,7 @@ module "eks" {
         desired_size = 2
         
         #  create_launch_template = false
-        #  use_custom_launch_template = false
+        # use_custom_launch_template = false
 
         metadata_options = {
         http_endpoint = "enabled"
@@ -110,6 +110,19 @@ module "eks" {
         http_put_response_hop_limit = 2 
     }
 
+        block_device_mappings = {
+        root = {
+          device_name = "/dev/xvda"
+
+          ebs = {
+            volume_size           = 40
+            volume_type           = "gp3"
+            encrypted             = true
+            delete_on_termination = true
+          }
+        }
+   }
+        
         post_bootstrap_user_data = <<-EOT
           sysctl -w net.ipv4.conf.all.rp_filter=2
         EOT
