@@ -115,8 +115,8 @@ module "eks" {
     }
 
          post_bootstrap_user_data = <<-EOT
-            sysctl -w net.ipv4.conf.all.rp_filter=2
-          EOT
+           sysctl -w net.ipv4.conf.all.rp_filter=2
+         EOT
         
         
         iam_role_additional_policies = {
