@@ -114,9 +114,14 @@ module "eks" {
         http_put_response_hop_limit = 2 
     }
 
-         post_bootstrap_user_data = <<-EOT
-           sysctl -w net.ipv4.conf.all.rp_filter=2
-         EOT
+        post_bootstrap_user_data = <<-EOT
+          cat >/etc/sysctl.d/99-eks-rp-filter.conf <<'EOF'
+          net.ipv4.conf.all.rp_filter = 2
+          net.ipv4.conf.default.rp_filter = 2
+          EOF
+
+          sysctl --system
+        EOT
         
         
         iam_role_additional_policies = {
