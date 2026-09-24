@@ -104,6 +104,9 @@ module "eks" {
         create_launch_template = true
         use_custom_launch_template = true
 
+        update_config = {
+        max_unavailable = 1
+      }
          
         metadata_options = {
         http_endpoint = "enabled"
