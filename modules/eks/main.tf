@@ -101,31 +101,21 @@ module "eks" {
         max_size = 2
         desired_size = 2
         
-        #  create_launch_template = false
-        # use_custom_launch_template = false
+        create_launch_template = true
+        use_custom_launch_template = true
 
+         
         metadata_options = {
         http_endpoint = "enabled"
         http_tokens = "required"
         http_put_response_hop_limit = 2 
     }
 
-  #       block_device_mappings = {
-  #       root = {
-  #         device_name = "/dev/xvda"
-
-  #         ebs = {
-  #           volume_size           = 40
-  #           volume_type           = "gp3"
-  #           encrypted             = true
-  #           delete_on_termination = true
-  #         }
-  #       }
-  #  }
+         post_bootstrap_user_data = <<-EOT
+            sysctl -w net.ipv4.conf.all.rp_filter=2
+          EOT
         
-        post_bootstrap_user_data = <<-EOT
-          sysctl -w net.ipv4.conf.all.rp_filter=2
-        EOT
+        
         iam_role_additional_policies = {
            AmazonEC2ContainerRegistryReadOnly = "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly"
         }
