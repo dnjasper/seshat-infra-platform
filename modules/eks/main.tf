@@ -116,7 +116,8 @@ module "eks" {
 
         post_bootstrap_user_data = <<-EOT
           cat >/etc/sysctl.d/99-eks-rp-filter.conf <<'EOF'
-          net.ipv4.conf.all.rp_filter = 2
+          #net.ipv4.conf.all.rp_filter = 2
+          net.ipv4.conf.ens6.rp_filter = 1
           net.ipv4.conf.default.rp_filter = 2
           EOF
 
