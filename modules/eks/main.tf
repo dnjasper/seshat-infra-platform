@@ -111,18 +111,25 @@ module "eks" {
         metadata_options = {
         http_endpoint = "enabled"
         http_tokens = "required"
-        http_put_response_hop_limit = 2 
+        http_put_response_hop_limit = 2
     }
+        enable_bootstrap_user_data = true
+        cloudinit_post_nodeadm = [
+          {
+        content_type = "text/x-shellscript; charset=\"us-ascii\""
+        content = <<-EOT
+          #!/bin/bash
 
-        post_bootstrap_user_data = <<-EOT
           cat >/etc/sysctl.d/99-eks-rp-filter.conf <<'EOF'
-          #net.ipv4.conf.all.rp_filter = 2
+          net.ipv4.conf.all.rp_filter = 2
           net.ipv4.conf.ens6.rp_filter = 0
           net.ipv4.conf.default.rp_filter = 2
           EOF
 
           sysctl --system
         EOT
+      }
+    ]
         
         
         iam_role_additional_policies = {
