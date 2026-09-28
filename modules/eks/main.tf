@@ -126,7 +126,7 @@ module "eks" {
           net.ipv4.conf.all.rp_filter = 2
           net.ipv4.conf.ens6.rp_filter = 0
           net.ipv4.conf.default.rp_filter = 2
-          echo "Kubelet extra configuration applied natively via Nodeadm fabric."
+          net.ipv4.ip_forward = 1
           EOF
 
           sysctl --system
