@@ -101,6 +101,8 @@ module "eks" {
         max_size = 2
         desired_size = 2
         
+
+        bootstrap_extra_args = "--kubelet-extra-args '--allowed-unsafe-sysctls=net.ipv4.ip_forward'"
         # create_launch_template = true
         # use_custom_launch_template = true
 
