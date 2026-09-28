@@ -102,7 +102,6 @@ module "eks" {
         desired_size = 2
         
 
-        bootstrap_extra_args = "--kubelet-extra-args '--allowed-unsafe-sysctls=net.ipv4.ip_forward'"
         # create_launch_template = true
         # use_custom_launch_template = true
 
@@ -116,6 +115,7 @@ module "eks" {
         http_put_response_hop_limit = 2
     }
         enable_bootstrap_user_data = true
+        kubelet_extra_args = "--allowed-unsafe-sysctls=net.ipv4.ip_forward"
         cloudinit_post_nodeadm = [
           {
         content_type = "text/x-shellscript; charset=\"us-ascii\""
@@ -126,6 +126,7 @@ module "eks" {
           net.ipv4.conf.all.rp_filter = 2
           net.ipv4.conf.ens6.rp_filter = 0
           net.ipv4.conf.default.rp_filter = 2
+          echo "Kubelet extra configuration applied natively via Nodeadm fabric."
           EOF
 
           sysctl --system
