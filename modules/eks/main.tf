@@ -99,7 +99,7 @@ module "eks" {
         capacity_type = "ON_DEMAND"
         min_size = 1
         max_size = 5
-        desired_size = 4
+        desired_size = 4 # push
         
 
         # create_launch_template = true
